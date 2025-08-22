@@ -1,10 +1,28 @@
 package com.project.room_hilt_retrofit
 
 import android.app.Application
+import android.util.Log
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-//Every app must contain a class, which inherits the Application Android class, which is annotated by @HiltAndroidApp.
-//This class is used by Hilt’s code generator, which makes all the components lifecycle aware.
-//From this point, the Hilt is fully integrated into our app and we can start using it for DI.
 @HiltAndroidApp
-class App: Application()
+class App : Application() {
+    private val TAG = "mLogDatabase"
+
+    @Inject
+    lateinit var databaseMigrationManager: DatabaseMigrationManager
+
+    override fun onCreate() {
+        super.onCreate()
+        Log.d(TAG, "Application started. Starting database migration check.")
+
+        // Запускаем асинхронную миграцию в фоновом потоке.
+        // Это произойдет до того, как Hilt начнет инжектировать базу данных.
+        CoroutineScope(Dispatchers.IO).launch {
+            databaseMigrationManager.performMigration()
+        }
+    }
+}

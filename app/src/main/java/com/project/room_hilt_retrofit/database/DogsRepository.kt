@@ -17,5 +17,4 @@ class DogsRepository @Inject constructor(private val dogsDao: DogsDao) {
             return@withContext dogsDao.getAllDogs()
         }
     }
-
 }

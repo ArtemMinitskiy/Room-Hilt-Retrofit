@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.1"
+androidDatabaseSqlcipher = "4.5.3"
 kotlin = "1.9.0"
 hilt = "2.48"
 hiltNavigationCompose = "1.2.0"
@@ -18,9 +19,12 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.4"
 activityCompose = "1.9.1"
 composeBom = "2024.04.01"
+sqlite = "2.1.0"
 
 [libraries]
+android-database-sqlcipher = { module = "net.zetetic:android-database-sqlcipher", version.ref = "androidDatabaseSqlcipher" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-sqlite = { module = "androidx.sqlite:sqlite", version.ref = "sqlite" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

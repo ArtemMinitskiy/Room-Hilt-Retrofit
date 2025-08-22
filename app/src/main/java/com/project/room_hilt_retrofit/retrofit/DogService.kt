@@ -5,6 +5,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface DogService {
-    @GET("api/breeds/image/random")
+    @GET("api/ticker/BTC/USD")
     suspend fun getDog(): Response<DogResponse>
 }
